@@ -2,8 +2,14 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Main {
-    public static void main(String[] args) {
+/**
+ * @author  Tom Wulf Tom.Wulf@uc.edu
+ *
+ */
+public class Part1
+{
+    public static void main(String[] args)
+    {
         String[] scoobies = {"Velma", "Fred", "Shaggy", "Daphne", "Scooby Doo"};
         String[] upperCaseScooby;
         Set<String> scoobyTeamSet = new HashSet<>();
@@ -81,7 +87,12 @@ public class Main {
         scoobyTeam = Arrays.stream(scoobies);
 
 
-        // key is the first two characters of the name to be unique
+        // Here is how we defined the Map:
+
+        //          Map<String, List<String>> scoobyTeamMap = new TreeMap<>(); The key retriees a list
+
+        // key is the first Char of name creates a list for each initial letter note that Shaggy and Scooby Doo...
+        // are in the same group.  We can fource the key to be 2 chars to make it unique
         scoobyTeamMap = scoobyTeam
                        .collect(Collectors.groupingBy(c -> c.substring(0,1)));
 
