@@ -2,14 +2,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Main
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
         String[] scoobies = {"Velma", "Fred", "Shaggy", "Daphne", "Scooby Doo"};
         String[] upperCaseScooby;
         Set<String> scoobyTeamSet = new HashSet<>();
-        Map<String,String> scoobyTeamMap = new TreeMap<>();
+        Map<String, String> scoobyTeamMap = new TreeMap<>();
         ArrayList<String> scoobyTeamList = new ArrayList<>();
         String scoobyTeamStr = "";
         System.out.println("Hello Stream Processing!\n");
@@ -28,10 +26,10 @@ public class Main
         // so we have to recreate it for the next example
         scoobyTeam = Arrays.stream(scoobies);
 
-        // use a map function to convert all to uppercase and save to a new Array
+        // use a map function to convert all to uppercase and save to a delited String
         scoobyTeamStr = scoobyTeam
-                        .map(c -> c.toUpperCase())
-                        .collect(Collectors.joining(", "));
+                .map(c -> c.toUpperCase())
+                .collect(Collectors.joining(", "));
 
         System.out.println("Here is out string of scoobies: " + scoobyTeamStr + "\n");
 
@@ -39,13 +37,13 @@ public class Main
         // of collecting them to a string
         scoobyTeam = Arrays.stream(scoobies);
 
-        upperCaseScooby =  scoobyTeam
+        upperCaseScooby = scoobyTeam
                 .map(c -> c.toUpperCase())
                 .toArray(String[]::new);
 
         System.out.println("Here is our array of scoobies:");
-        for(String s:upperCaseScooby)
-          System.out.println(s);
+        for (String s : upperCaseScooby)
+            System.out.println(s);
 
 
         System.out.println("\n\nSet:");
@@ -69,7 +67,7 @@ public class Main
 
         // use a map function to convert to Capital case and save to a List
         scoobyTeamList = (ArrayList<String>) scoobyTeam
-                .map(c -> c.substring(0,1).toUpperCase() + c.substring(1))
+                .map(c -> c.substring(0, 1).toUpperCase() + c.substring(1).toLowerCase())
                 .sorted()
                 .collect(Collectors.toList());
 
@@ -82,12 +80,12 @@ public class Main
         scoobyTeam = Arrays.stream(scoobies);
 
         // use a map function to convert to Capital case and save to a List
-        scoobyTeamMap = (TreeMap<String, String>) scoobyTeam
-                .map(c -> c.substring(0,1).toUpperCase() + c.substring(1))
-                .collect(Collectors.toMap(c.substring(0,1), c));
+        // key is the first two characters of the name to be unique
+//        scoobyTeamMap = (TreeMap<String, String>) scoobyTeam
+//                .map(c -> c.substring(0,1).toUpperCase() + c.substring(1))
+//                .collect(Collectors.toMap(c.substring(0,2), c.));
 
-        System.out.println(scoobyTeamMap);
-    }
+ //       System.out.println(scoobyTeamMap);
 
     }
 }
