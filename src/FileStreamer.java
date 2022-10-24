@@ -33,6 +33,8 @@ public class FileStreamer
      *
      */
     public static Set<String> noiseWords = new TreeSet<>();
+    public static Set<String> keySet = new TreeSet<>();
+
 
     public static void main(String[] args)
     {
@@ -106,7 +108,30 @@ public class FileStreamer
                 e.printStackTrace();
             }
 
-            System.out.println(indexMap);
+           // System.out.println(indexMap);
+
+           /*
+              Display the map instead of dumping it
+
+              Get the set of keys and traverse them
+              for each key Display the key as a heading
+              Then display the list stored for this key.
+             */
+              keySet = indexMap.keySet();
+              for(String k:keySet)
+              {
+                  System.out.println("Group " + k);
+
+                  for(String s: indexMap.get(k))
+                  {
+                      System.out.println("\t" + s);
+                  }
+              }
+
+
+
+
+
         }
         else
         {
@@ -121,10 +146,23 @@ public class FileStreamer
             loadNoiseWords();
         }
 
-        if(word.length() < 2 || noiseWords.contains(word))
+        System.out.print("\tTesting : " + word + "\t");
+
+        if(word.length() < 2)
+        {
+            System.out.println(" len < 2");
             return true;
+        }
+        else if(noiseWords.contains(word))
+        {
+            System.out.println(" in Lexicon");
+            return true;
+        }
         else
+        {
+            System.out.println("Keyword!");
             return false;
+        }
 
     }
 
